@@ -19,7 +19,7 @@ import java.util.Date;
 public class Food
 {
     @Id
-    private Integer id;
+    private String id;
 
     @Column(name = "name_ar")
     private String nameAr;
@@ -43,11 +43,11 @@ public class Food
 
     private Long timestamp;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @ApplicationScoped
 public class WithdrawService
@@ -17,12 +18,13 @@ public class WithdrawService
     @PersistenceContext(unitName = "hajj_hackathon_db")
     private EntityManager em;
 
-    public void withdrawFood(int foodId, int customerId, int vmId)
+    public void withdrawFood(String foodId, int customerId, int vmId)
     {
         Withdraw withdraw = new Withdraw();
         withdraw.setFoodId(foodId);
         withdraw.setCustomerId(customerId);
         withdraw.setVmId(vmId);
+        withdraw.setTimestamp(LocalDateTime.now().atZone(ZoneId.of("GMT+3")).toInstant().toEpochMilli() / 1000);
         em.persist(withdraw);
     }
 
@@ -33,13 +35,17 @@ public class WithdrawService
 
         try
         {
-            Withdraw result = namedQuery.getSingleResult();
-            LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(result.getTimestamp() * 1000), ZoneId.of("GMT+3"));
-            return LocalDateTime.now().minusDays(1).isAfter(ldt);
+            List<Withdraw> list = namedQuery.getResultList();
+            if(list != null && !list.isEmpty())
+            {
+                LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochMilli(list.get(0).getTimestamp() * 1000), ZoneId.of("GMT+3"));
+                return LocalDateTime.now().minusDays(1).isAfter(ldt);
+            }
+            else return true;
         }
         catch(NoResultException e)
         {
-            return false;
+            return true;
         }
     }
 }

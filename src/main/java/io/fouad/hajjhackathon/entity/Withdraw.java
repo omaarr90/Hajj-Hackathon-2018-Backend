@@ -23,7 +23,7 @@ public class Withdraw
     private int vmId;
 
     @Column(name = "food_id")
-    private int foodId;
+    private String foodId;
 
     private Long timestamp;
 
@@ -51,11 +51,11 @@ public class Withdraw
         this.vmId = vmId;
     }
 
-    public int getFoodId() {
+    public String getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(int foodId) {
+    public void setFoodId(String foodId) {
         this.foodId = foodId;
     }
 

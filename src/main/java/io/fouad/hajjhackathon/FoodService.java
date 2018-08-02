@@ -49,7 +49,7 @@ public class FoodService
         });
     }
 
-    public void withdrawFood(int foodId, int customerId)
+    public void withdrawFood(String foodId, int customerId)
     {
         TypedQuery<Food> namedQuery = em.createNamedQuery("Food.getFoodById", Food.class);
         namedQuery.setParameter("id", foodId);

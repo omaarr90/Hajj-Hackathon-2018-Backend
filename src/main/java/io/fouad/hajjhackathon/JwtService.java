@@ -2,7 +2,6 @@ package io.fouad.hajjhackathon;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

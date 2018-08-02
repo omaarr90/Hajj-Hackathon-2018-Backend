@@ -15,12 +15,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.security.Principal;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 @Path("user")
 @RequestScoped
@@ -45,7 +41,7 @@ public class UserResource
     @Secured
     @RolesAllowed("admin")
     public void createUser(@FormParam("username") String username, @FormParam("password") String password,
-                           @FormParam("email") String email, @FormParam("displayName") String displayName) throws IOException, GeneralSecurityException
+                           @FormParam("email") String email, @FormParam("displayName") String displayName) throws GeneralSecurityException
     {
         User user = new User();
 

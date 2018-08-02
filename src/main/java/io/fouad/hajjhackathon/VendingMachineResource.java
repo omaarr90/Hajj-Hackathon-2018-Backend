@@ -89,7 +89,7 @@ public class VendingMachineResource
     @RolesAllowed({"admin", "vm"})
     public Response withdrawFood(WithdrawRequest withdrawRequest)
     {
-        int foodId = withdrawRequest.getFoodId();
+        String foodId = withdrawRequest.getFoodId();
         int customerId = withdrawRequest.getCustomerId();
         int vmId = withdrawRequest.getVmId();
 
